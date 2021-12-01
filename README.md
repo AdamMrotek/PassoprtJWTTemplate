@@ -13,12 +13,14 @@
 
 ## What is included in template
 * Creating an User
+   - Input validation
    - Checking if user exists
    - Storing User inside the database 
 * Login user
+   - Input validation
    - Validating credentials
    - Creating Json Web Token in response
-* Current route for autorization, using custom passport callback funtionr
+* Current route for autorization, using custom passport callback funtion
    - Allows loged in users to access the route
    - If autorization failes user is presented with log-in form
 
