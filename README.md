@@ -11,14 +11,15 @@
 
 
 
-```bash
-   npm install
-   npm start
-   npm here we go -abc
-```
-```javascript
-   function welcome(name){
-   console.log(`Aloha ${name}`)
-   }
-```
+## What is included in template
+* Creating an User
+   - Checking if user exists
+   - Storing User inside the database 
+* Login user
+   - Validating credentials
+   - Creating Json Web Token in response
+* Current route for autorization, using custom passport callback funtion
+   -allows loged in users to access the route
+   -if autorization failes user is presented with log-in form
+
 
