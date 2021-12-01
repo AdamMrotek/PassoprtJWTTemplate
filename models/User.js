@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
   username: { type: String, required: true, maxLength: 100 },
-  //   email: { type: String, required: true, maxLength: 100 },
+  email: { type: String, required: true, maxLength: 100 },
   password: { type: String, required: true },
+  membership: { type: String, required: true },
 });
 // Virtual for author's URL
 UserSchema.virtual("url").get(function () {
