@@ -8,8 +8,11 @@ router.get("/", function (req, res, next) {
   res.send("Get Route for Users");
 });
 
-// router.get("/current", function (req, res, next) {
-//   res.json({ msg: "GET Profile" });
-// });
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }, (req, res) => {
+    res.json({ msg: "you are authentic" });
+  })
+);
 
 module.exports = router;

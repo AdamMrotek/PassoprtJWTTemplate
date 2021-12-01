@@ -32,10 +32,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //Routes
-app.get("/", (req, res) => {
-  console.log(req.user ? req.user : null);
-  res.render("index", { user: req.user });
-});
+
 app.use("/profile", profileRouter);
 app.use("/users", usersRouter);
 app.use("/posts", postsRouter);
@@ -96,14 +93,25 @@ app.post("/log-in", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-app.get(
-  "/current",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    res.json({ msg: "success", user: req.user });
-  }
-);
+// app.get(
+//   "/current",
+//   passport.authenticate("jwt", { session: false }),
+//   (req, res) => {
+//     res.render("index", { msg: "success", user: req.user });
+//   }
+// );
+app.get("/current", (req, res, next) => {
+  passport.authenticate("jwt", (err, user, info) => {
+    if (err) return next(err);
+    if (!user) return res.redirect("/");
+    return res.render("index", { user: user });
+  })(req, res, next);
+});
 
+app.get("/", (req, res) => {
+  console.log(req.user ? req.user : null);
+  res.render("index", { user: req.user });
+});
 app.get("/log-out", (req, res) => {
   req.logout();
   res.redirect("/");
